@@ -12,7 +12,6 @@ import {
   getExistingActions,
   getExistingActionsWithoutResponse,
 } from "../nlp/documents";
-import { actionServer } from "../utils/axios";
 import { config } from "dotenv";
 
 config();
@@ -68,17 +67,7 @@ router.delete("/example", (req, res) => {
 
 router.get("/actions/supported", async (req, res) => {
   try {
-    const actions = await actionServer
-      .get(`${process.env.ACTION_SERVER_HOST}/actions`)
-      .then((res) => {
-        return res.data.actions;
-      })
-      .catch((err) => {
-        console.log("Error: ", err);
-        return res.send({
-          error: "There was an error getting the supported actions",
-        });
-      });
+    const actions = [];
     return res.send({
       actions: actions,
       message: "Successfully retrieved supported actions",

@@ -9,7 +9,7 @@ config();
 
 const app = Express();
 
-const PORT = process.env.PORT || 5001;
+const PORT = process.env.PORT || 5050;
 
 app.use(json());
 app.use(urlencoded({ extended: true }));
